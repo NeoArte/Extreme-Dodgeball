@@ -2,6 +2,7 @@
   "resources": [
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"order":3,},
     {"id":{"name":"tSand","path":"tilesets/tSand/tSand.yy",},"order":0,},
+    {"id":{"name":"Sprite7","path":"sprites/Sprite7/Sprite7.yy",},"order":14,},
     {"id":{"name":"sPlayer","path":"sprites/sPlayer/sPlayer.yy",},"order":5,},
     {"id":{"name":"sBox","path":"sprites/sBox/sBox.yy",},"order":6,},
     {"id":{"name":"ts_collision","path":"tilesets/ts_collision/ts_collision.yy",},"order":1,},
