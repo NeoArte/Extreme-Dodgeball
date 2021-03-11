@@ -6,7 +6,14 @@ tilemap = layer_tilemap_get_id("Collision");
 //Movement
 goX = 0;
 goY = 0;
+dx = 0;
+dy = 0;
+angle = 0;
+
 spd = 12;
 angle = 0;
-canMove = true;
+
+tilemap = layer_tilemap_get_id("Collision");
+
+runAway = 1;
 target = noone;
