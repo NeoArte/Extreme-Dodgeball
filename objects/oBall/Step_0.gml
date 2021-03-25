@@ -1,11 +1,26 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if(tilemap_get_at_pixel(tilemap, x, y) == 1){
-	x = oPlayer.x;
-	y = oPlayer.y;
+if(tilemap_get_at_pixel(tilemap, x, y) == 1
+|| ((x > room_width || x < 0)||(y > room_height || y < 0))){
+	
 	dx *= -1;
 	dy *= -1;
+	
+	var teleportTo, oldX;
+	oldX = x;
+	x += 100000;
+	
+	teleportTo = instance_nearest(oldX, y, oBall);
+	
+	if(teleportTo != id){
+		x = teleportTo.x;
+		y = teleportTo.y;
+	} else {
+		x = oArenaCenter.x;
+		y = oArenaCenter.y;
+	}
+	
 }
 
 if(hold){
@@ -20,16 +35,21 @@ if(hold){
 	
 	//Se for pressionado contra a parede
 	
-	if(tilemap_get_at_pixel(tilemap, oPlayer.x + lengthdir_x(xToPlayer + xToPlayer/3, oPlayer.angle), y) == 1){
-		x = oPlayer.x;
+	if(tilemap_get_at_pixel(tilemap, owner.x + lengthdir_x(xToPlayer + xToPlayer/3, owner.angle), y) == 1){
+		x = owner.x;
 	} else {
-		x = oPlayer.x + lengthdir_x(xToPlayer, oPlayer.angle);
+		x = owner.x + lengthdir_x(xToPlayer, owner.angle);
 	}
 	
-	if(tilemap_get_at_pixel(tilemap, x, oPlayer.y + lengthdir_y(yToPlayer + yToPlayer/3, oPlayer.angle)) == 1){
-		y = oPlayer.y;
+	if(tilemap_get_at_pixel(tilemap, x, owner.y + lengthdir_y(yToPlayer + yToPlayer/3, owner.angle)) == 1){
+		y = owner.y;
 	} else {
-		y = oPlayer.y + lengthdir_y(yToPlayer, oPlayer.angle);
+		y = owner.y + lengthdir_y(yToPlayer, owner.angle);
+	}
+	
+	if(tilemap_get_at_pixel(tilemap, x, y) == 1){
+		x = owner.x;
+		y = owner.y;
 	}
 	
 	//Sem distorções
@@ -59,7 +79,7 @@ if(hold){
 
 if(launched){
 	
-	launchAngle = point_direction(oPlayer.x, oPlayer.y, mouse_x, mouse_y);
+	
 	chargeTime = 0;
 	chargeTimeLimit = 25;
 	

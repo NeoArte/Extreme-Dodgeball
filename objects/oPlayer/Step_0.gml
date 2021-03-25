@@ -56,8 +56,13 @@ if(mouse_check_button(mb_left) || mouse_check_button(mb_right)){
 } else {
 	//(Else) Se tinha e soltou
 	if(ballHolding != noone){
+		
 		ballHolding.hold = false;
+		
 		ballHolding.launched = true;
+		ballHolding.launchAngle = point_direction(x, y, mouse_x, mouse_y);
+		
+		
 		ballHolding.owner = noone;
 		ballHolding = noone;
 	}
