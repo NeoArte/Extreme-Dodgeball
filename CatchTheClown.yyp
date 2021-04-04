@@ -4,7 +4,9 @@
     {"id":{"name":"oArenaCenter","path":"objects/oArenaCenter/oArenaCenter.yy",},"order":4,},
     {"id":{"name":"tSand","path":"tilesets/tSand/tSand.yy",},"order":0,},
     {"id":{"name":"sPlayer","path":"sprites/sPlayer/sPlayer.yy",},"order":5,},
+    {"id":{"name":"oCamera","path":"objects/oCamera/oCamera.yy",},"order":5,},
     {"id":{"name":"sArenaCenter","path":"sprites/sArenaCenter/sArenaCenter.yy",},"order":7,},
+    {"id":{"name":"sCamera","path":"sprites/sCamera/sCamera.yy",},"order":8,},
     {"id":{"name":"sBox","path":"sprites/sBox/sBox.yy",},"order":6,},
     {"id":{"name":"ts_collision","path":"tilesets/ts_collision/ts_collision.yy",},"order":1,},
     {"id":{"name":"fnt_ui","path":"fonts/fnt_ui/fnt_ui.yy",},"order":0,},
@@ -56,7 +58,7 @@
   ],
   "IncludedFiles": [],
   "MetaData": {
-    "IDEVersion": "2.3.1.542",
+    "IDEVersion": "2.3.2.556",
   },
   "resourceVersion": "1.4",
   "name": "CatchTheClown",
