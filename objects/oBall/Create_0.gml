@@ -38,6 +38,7 @@ rotSpd = 10;
 charge = 0;
 chargeTime = 0;
 chargeTimeLimit = 25;
+lifeTime = 60;
 
 spd_zero = 20;
 spd_one = 35;

@@ -86,50 +86,7 @@ if(launched){
 	dx = cos(degtorad(launchAngle));
 	dy = -sin(degtorad(launchAngle));
 	
-	switch(charge){
-		case 0:
-		spd = spd_zero;
-		bigD = 1;
-		smallD = 1;
-		isCold = true;
-		image_blend = c_zero;
-		rotSpd = 12;
-		
-		break;
-		
-		case 1:
-		spd = spd_one;
-		bigD = 1.2;
-		smallD = 0.8;
-		isCold = false;
-		image_blend = c_one;
-		rotSpd = 15;
-		
-		break;
-		
-		case 2:
-		spd = spd_two;
-		bigD = 1.3;
-		smallD = 0.7;
-		isCold = false;
-		image_blend = c_two;
-		rotSpd = 20;
-		
-		break;
-		
-		case 3:
-		spd = spd_three;
-		bigD = 1.4;
-		smallD = 0.6;
-		isCold = false;
-		image_blend = c_three;
-		rotSpd = 25;
-		
-		break;
-	}
-	
-	
-	alarm[1] = 60;
+	changeCharge(id);
 }
 
 if(reduceTo != 0 && spd > reduceTo){
@@ -160,21 +117,25 @@ if (abs(dy) > abs(dx)){
 		masky = -48;
 	}
 
-//Colisão com outras bolas
+//Colisão com outras bolas (Direção X e Direção Y)
+
 inst = instance_place(x + (dx*spd) + maskx/2, y, oBall);
 if(inst != noone){
 	//Criar novo angulo no impacto
 	
-	dx = (!hold)? -cos(degtorad(point_direction(x, y, inst.x, inst.y))) : dx;
-	inst.dx = (!inst.hold)? -cos(degtorad(point_direction(inst.x, inst.y, x, y))) : inst.dx;
+	dx = -cos(degtorad(point_direction(x, y, inst.x, inst.y)));
+	inst.dx = -cos(degtorad(point_direction(inst.x, inst.y, x, y)));
 	
-	dy = (!hold)? sin(degtorad(point_direction(x, y, inst.x, inst.y))) : dy;
-	inst.dy = (!inst.hold)? sin(degtorad(point_direction(inst.x, inst.y, x, y))) : inst.dy;
+	dy = sin(degtorad(point_direction(x, y, inst.x, inst.y)));
+	inst.dy = sin(degtorad(point_direction(inst.x, inst.y, x, y)));
+	
+	//if(hold == true && inst.hold == false) { hold = false }
+	//else if (hold == false && inst.hold == true) { inst.hold = false }
 	
 	if(charge < inst.charge && (!hold && !inst.hold)){
 		charge = inst.charge;
 		chargeExchange = true;
-	}else if(charge > inst.charge && (!hold && !inst.hold)){
+	} else if(charge > inst.charge && (!hold && !inst.hold)){
 		inst.charge = charge;
 		inst.chargeExchange = true;
 	}
@@ -183,11 +144,17 @@ if(inst != noone){
 inst = instance_place(x, y + (dy * spd) + masky/2, oBall);
 if(inst != noone){
 	
-	dx = (!hold)? -cos(degtorad(point_direction(x, y, inst.x, inst.y))) : dx;
-	inst.dx = (!inst.hold)? -cos(degtorad(point_direction(inst.x, inst.y, x, y))) : inst.dx;
+	dx = -cos(degtorad(point_direction(x, y, inst.x, inst.y)));
+	inst.dx = -cos(degtorad(point_direction(inst.x, inst.y, x, y)));
 	
-	dy = (!hold)? sin(degtorad(point_direction(x, y, inst.x, inst.y))) : dy;
-	inst.dy = (!inst.hold)? sin(degtorad(point_direction(inst.x, inst.y, x, y))) : inst.dy;
+	dy = sin(degtorad(point_direction(x, y, inst.x, inst.y)));
+	inst.dy = sin(degtorad(point_direction(inst.x, inst.y, x, y)));
+	
+	//if(hold == true && inst.hold == false) { hold = false }
+	//else if (hold == false && inst.hold == true) { inst.hold = false }
+	
+	//if(hold == true && inst.hold == false) { hold = false }
+	//else if (hold == false && inst.hold == true) { inst.hold = false }
 	
 	if(charge < inst.charge && (!hold && !inst.hold)){
 		charge = inst.charge;
@@ -200,7 +167,23 @@ if(inst != noone){
 
 if(chargeExchange){
 	
-		switch(charge){
+	changeCharge(id);
+	alarm[2] = 5*60;
+	chargeExchange = false;
+}
+/*
+if(hold == false && owner != noone){
+	if(owner.object_index == oPlayer){
+		owner.ballHolding = noone;
+	} else if(owner.object_index == oEnemy){
+		owner.target = noone;
+	}
+	
+	owner = noone;
+	launched = true;
+	
+	//
+	switch(charge){
 		case 0:
 		spd = spd_zero;
 		bigD = 1;
@@ -208,6 +191,7 @@ if(chargeExchange){
 		isCold = true;
 		image_blend = c_zero;
 		rotSpd = 12;
+		lifeTime = 1;
 		
 		break;
 		
@@ -217,7 +201,8 @@ if(chargeExchange){
 		smallD = 0.8;
 		isCold = false;
 		image_blend = c_one;
-		rotSpd = 15;
+		rotSpd = 60;
+		lifeTime = 60;
 		
 		break;
 		
@@ -228,6 +213,7 @@ if(chargeExchange){
 		isCold = false;
 		image_blend = c_two;
 		rotSpd = 20;
+		lifeTime = 45;
 		
 		break;
 		
@@ -238,14 +224,18 @@ if(chargeExchange){
 		isCold = false;
 		image_blend = c_three;
 		rotSpd = 25;
+		lifeTime = 30;
 		
 		break;
 	}
 	
-	alarm[1] = 60;
+	alarm[1] = lifeTime;
 	alarm[2] = 5*60;
-	chargeExchange = false;
+	//
+	
 }
+*/
+
 
 //Colisão com Tiles em X e em Y
 

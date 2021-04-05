@@ -301,7 +301,7 @@ else if (state == States.Throw){
 			goY = y;
 		}
 	}
-	show_debug_message(string(throwPath));
+	//show_debug_message(string(throwPath));
 	//show_debug_message("X: " + string(x) + "/" + string(goX));
 	//show_debug_message("Y: " + string(y) + "/" + string(goY));
 	
